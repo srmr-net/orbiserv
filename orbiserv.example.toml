@@ -1,0 +1,6 @@
+host = "127.0.0.1"
+port = 8000
+groups = ["stations", "gps-ops", "weather"]
+
+# For offline mode, select one group above and set a GP JSON fixture.
+# fixture = "fixtures/iss.json"

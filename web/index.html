@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Satellite catalog · Orbiserv</title>
+  <link rel="stylesheet" href="/ui/catalog.css">
+  <script src="/ui/catalog.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="shell brand"><span class="brand-mark" aria-hidden="true">◎</span> Orbiserv</div>
+  </header>
+  <main class="shell">
+    <div class="intro">
+      <h1>Satellite catalog</h1>
+      <p>Find a satellite or group and create a CZML feed for NeedleEye.</p>
+      <p id="source" class="source" hidden></p>
+    </div>
+    <div class="workspace">
+      <section class="catalog" aria-labelledby="catalog-title">
+        <h2 id="catalog-title">Browse</h2>
+        <div class="filters">
+          <label>Group<select id="group"><option value="">All satellites</option></select></label>
+          <label>Satellite name or NORAD ID<input id="search" type="search" placeholder="Search satellites"></label>
+        </div>
+        <div class="results-bar">
+          <span id="count" role="status">Loading catalog…</span>
+          <button id="group-feed" type="button" hidden>Use group feed</button>
+        </div>
+        <div class="table-wrap" id="results" hidden>
+          <table>
+            <thead><tr><th scope="col">Satellite</th><th scope="col">NORAD ID</th><th scope="col">Element epoch (UTC)</th></tr></thead>
+            <tbody id="satellites"></tbody>
+          </table>
+        </div>
+        <nav id="pagination" aria-label="Catalog pages" hidden>
+          <button id="previous" type="button">Previous</button>
+          <span id="page-label"></span>
+          <button id="next" type="button">Next</button>
+        </nav>
+      </section>
+      <section class="feed" aria-labelledby="feed-title">
+        <h2 id="feed-title">Prediction feed</h2>
+        <p id="selection">Choose a satellite or group.</p>
+        <form id="feed-form" hidden>
+          <label>Start time (UTC)<input id="start" type="datetime-local" aria-describedby="start-hint"></label>
+          <p class="hint" id="start-hint"></p>
+          <div class="feed-options">
+            <label>Duration (minutes)<input id="duration" type="number" min="1" max="1440" value="120" required></label>
+            <label id="feed-page-label" hidden>Group page<select id="feed-page"></select></label>
+          </div>
+          <label>Feed URL<input id="url" type="url" readonly></label>
+          <div class="actions">
+            <button class="primary" id="copy" type="button">Copy URL</button>
+            <a class="button" id="download" download>Download CZML</a>
+          </div>
+          <p class="hint" id="feedback" role="status"></p>
+        </form>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

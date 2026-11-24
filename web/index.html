@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Satellite catalog · Orbiserv</title>
   <link rel="stylesheet" href="/ui/catalog.css">
-  <script src="/ui/catalog.js" defer></script>
+  <script src="/ui/catalog.js" type="module"></script>
 </head>
 <body>
   <header class="masthead">
@@ -54,11 +54,27 @@
           <div class="actions">
             <button class="primary" id="copy" type="button">Copy URL</button>
             <a class="button" id="download" download>Download CZML</a>
+            <button id="preview" type="button">View on globe</button>
           </div>
           <p class="hint" id="feedback" role="status"></p>
         </form>
+        <button class="open-file" id="open-czml" type="button">Open CZML file</button>
+        <input id="czml-file" type="file" accept=".czml,.json" hidden>
       </section>
     </div>
   </main>
+  <dialog id="orbit-dialog" aria-labelledby="orbit-title">
+    <div class="orbit-header">
+      <h2 id="orbit-title">Orbit viewer</h2>
+      <form method="dialog"><button type="submit">Close</button></form>
+    </div>
+    <p id="orbit-status" role="status"></p>
+    <div id="globe" aria-label="Interactive 3D globe" hidden></div>
+    <div id="orbit-controls" hidden>
+      <button id="orbit-play" type="button">Play</button>
+      <label>Playback position<input id="orbit-time" type="range" min="0" value="0" step="any"></label>
+      <output id="orbit-clock" for="orbit-time"></output>
+    </div>
+  </dialog>
 </body>
 </html>

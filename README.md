@@ -36,7 +36,7 @@ machine:
 
 Add a feed for each satellite you want to display. The default prediction
 runs from the time of the request through the next two hours. You can also
-save a snapshot and open it in NeedleEye.
+save a snapshot and open it in [NeedleEye](https://github.com/srmr-net/needleeye).
 
 ```sh
 curl --fail --output hubble.czml 'http://127.0.0.1:8000/satellites/20580/orbit.czml'
@@ -118,3 +118,18 @@ if none of its satellites can be propagated.
 To try a group feed offline, start with
 `--fixture fixtures/iss.json --group stations`. The bundled fixture will
 give that group a single historical ISS record.
+
+## Preview CZML on a globe
+
+Select a satellite or group, then choose **View on globe** to display the
+configured feed. Drag to rotate, scroll or pinch to zoom, and use the timeline
+to scrub or play at 60×. The blue lines show the sampled trajectories over
+the loaded window. The gold markers show positions at the selected time.
+
+Use **Open CZML file** to view a saved file in the browser. The viewer supports
+sampled Earth-fixed Cartesian positions with an epoch and numeric second
+offsets, as produced by Orbiserv. The globe uses a spherical Earth to display
+the Earth-fixed Cartesian vectors.
+
+The globe viewer needs WebGL and loads Globe.GL and its Blue Marble Earth
+texture from jsDelivr on first use. Your CZML files are read locally by the browser.

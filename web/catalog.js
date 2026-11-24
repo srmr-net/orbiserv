@@ -1,3 +1,5 @@
+import { showOrbit } from "./orbit-viewer.js";
+
 const byId = (id) => document.getElementById(id);
 const group = byId("group");
 const search = byId("search");
@@ -9,6 +11,7 @@ const feedPage = byId("feed-page");
 const feedUrl = byId("url");
 const copy = byId("copy");
 const download = byId("download");
+const preview = byId("preview");
 const feedback = byId("feedback");
 
 const rowsPerPage = 15;
@@ -107,6 +110,7 @@ function updateFeed() {
   feedback.textContent = "";
   const valid = duration.validity.valid && start.validity.valid;
   copy.disabled = !valid;
+  preview.disabled = !valid;
   download.setAttribute("aria-disabled", String(!valid));
   download.tabIndex = valid ? 0 : -1;
   if (!valid) {
@@ -154,6 +158,15 @@ copy.addEventListener("click", async () => {
     feedUrl.select();
     feedback.textContent = "Press Ctrl+C or Cmd+C to copy the selected URL.";
   }
+});
+
+preview.addEventListener("click", () => showOrbit(() => getJson(feedUrl.value)));
+const file = byId("czml-file");
+byId("open-czml").addEventListener("click", () => file.click());
+file.addEventListener("change", () => {
+  const selected = file.files[0];
+  file.value = "";
+  if (selected) showOrbit(async () => JSON.parse(await selected.text()));
 });
 
 async function initialize() {

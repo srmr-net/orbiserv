@@ -21,6 +21,7 @@ WEB_ASSETS = {
     "/": ("index.html", "text/html"),
     "/ui/catalog.css": ("catalog.css", "text/css"),
     "/ui/catalog.js": ("catalog.js", "text/javascript"),
+    "/ui/orbit-viewer.js": ("orbit-viewer.js", "text/javascript"),
 }
 GP_URL = "https://celestrak.org/NORAD/elements/gp.php"
 GROUP_ID = r"[a-z0-9]+(?:-[a-z0-9]+)*"
